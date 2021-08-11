@@ -1,0 +1,16 @@
+package com.lockedme;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class LockedMeProject 
+{
+    static final String folderpath="D:\\Phase1 Project\\LockedMeFiles"; //FolderPath of files.  	
+	public static void main(String[] args)
+	{
+		
+	}
+	
+}
+

@@ -1,0 +1,20 @@
+package com.lockedme;
+
+import java.util.List;
+
+public class LockedMeProject 
+{
+    static final String folderpath="D:\\Phase1 Project\\LockedMeFiles"; //FolderPath of files. 
+     	
+	public static void main(String[] args)
+	{
+		// TODO Auto-generated method stub
+		 List<String> fileNames = FilesManager.getAllFiles(folderpath);
+		 
+		 for(String f:fileNames)
+			 System.out.println(f);
+               
+	}
+	
+}
+

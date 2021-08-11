@@ -1,0 +1,145 @@
+package com.lockedme;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class LockedMeProject 
+{
+    static final String folderpath="D:\\Phase1 Project\\LockedMeFiles"; //FolderPath of files.  	
+	public static void main(String[] args)
+	{
+		int proceed = 1;
+		
+    do 
+     {
+		//Variable Declaration.
+		int ch;
+		
+		//Display Menu.
+		ch=displayMenu();
+		
+		
+		switch(ch)
+		{
+			case 1 : getAllFiles();
+			          break;
+			case 2 : createFiles();
+	                  break;
+			case 3 : deleteFiles();
+	                  break;
+			case 4 : searchFiles();
+			          break;
+			case 5 : System.exit(0);
+			          break;
+			          
+			default : System.out.println("Invaild Option");
+			          break;
+		}
+     }while(proceed>0);		
+	}
+	
+	public static void displayMenu()
+	{
+		Scanner obj = new Scanner(System.in);
+		int ch;
+		
+		System.out.println("+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*");
+		System.out.println("\t\t\tLockedMe.com");
+		System.out.println("+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*");
+		System.out.println("1). Display All Files.");
+		System.out.println("2). Add a New File");
+		System.out.println("3). Delete a File");
+		System.out.println("4). Search a File");
+		System.out.println("5). Exit");
+		System.out.println("********************************************************************");
+	}
+	
+
+	public static void getAllFiles()
+	{
+	            //getting files name
+	            List<String> fileNames = FilesManager.getAllFiles(folderpath);
+			 
+	            for(String f:fileNames)
+		        System.out.println(f);
+	}
+	
+	
+	public static void createFiles()
+	{
+				//Variable Declaration.
+				Scanner obj = new Scanner(System.in);
+				String fileName;
+				int linesCount;
+				List<String> content = new ArrayList<String>();
+				
+				//Read files names from the user.
+				System.out.println("Enter the File Name:");
+				fileName=obj.nextLine();
+						
+		       //Read number of Lines form the user.
+				System.out.println("Enter how many lines in the files:");
+				linesCount=Integer.parseInt(obj.nextLine());
+				
+			   //Read lines from the user.
+				for(int i=1;i<=linesCount;i++)
+				{
+				   System.out.println("Enter line "+i+":");
+				   content.add(obj.nextLine());
+				}
+				
+				//Save content into the file.
+				boolean isSaved= FilesManager.createFiles(folderpath,fileName,content);
+				
+				if(isSaved)
+			       System.out.println("Files and Data saved Sucessfully");
+				else
+				   System.out.println("Error occured.Please contact admin@.com");
+	}
+	
+	
+	public static void deleteFiles()
+	{
+		        //Code for Deleting File.
+				String fileName;
+				Scanner obj = new Scanner(System.in);//User input.
+				System.out.println("Enter the file name to be Deleted:");
+			     fileName = obj.nextLine();
+			     
+			     //Deleting the File.
+			    boolean isDeleted = FilesManager.deleteFiles(folderpath,fileName);
+			      
+			    if(isDeleted)
+			    	System.out.println("File deleted Successfully");
+			    else
+			    	System.out.println("File not there");
+			    
+			    ///Close Scanner Object.
+			    obj.close();
+	}
+	
+	
+	public static void searchFiles()
+	{
+		        //Code for Searching the File.
+				String fileName;
+				Scanner obj = new Scanner(System.in);//User input.
+				System.out.println("Enter the file name to be Searched:");
+			     fileName = obj.nextLine();
+			     
+			     //Searching the File.
+			    boolean isFound = FilesManager.searchFiles(folderpath,fileName);
+			      
+			    if(isFound)
+			    	System.out.println("File searched Successfully");
+			    else
+			    	System.out.println("File not Found");
+			    
+			    //Close Scanner Object.
+			    obj.close();
+
+	}
+	
+}
+

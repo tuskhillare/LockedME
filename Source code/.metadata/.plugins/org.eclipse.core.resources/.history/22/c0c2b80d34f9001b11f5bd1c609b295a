@@ -1,0 +1,113 @@
+package com.lockedme;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.util.ArrayList;
+import java.util.List;
+
+public class FilesManager 
+{
+	/**
+	 * This method will return the file name from the folder.
+	 * @param folderpath
+	 * @return List<String>
+	 */
+    public static List<String> getAllFiles(String folderpath)
+    {
+	   //Creating file Object.
+    	File fl = new File(folderpath);
+    	
+       //getting all the files into filesArrays.
+    	File[] listOfFiles = fl.listFiles();
+      
+       //Declare a list to store the file name.
+    	List<String> fileNames = new ArrayList<String>();
+    	
+    	for(File f:listOfFiles)
+    		fileNames.add(f.getName());
+       
+       //Return the fileNames.
+         return fileNames;	
+	}
+    
+/**
+ * This method will create or append content into the file specified.
+ * @param folderpath.
+ * @param fileName.
+ * @param content.
+ * @return boolean.  
+ */
+    public static boolean createFiles(String folderpath,String fileName,List<String> content)
+    {
+    	try
+    	{
+           File fl= new File(folderpath,fileName);
+           FileWriter fw = new FileWriter(fl);
+           
+          for(String s:content)
+          {
+        	  fw.write(s+"\n");
+          }
+          fw.close();
+          return true;
+    	}
+       catch(Exception Ex)
+        {
+    	  return false;
+        }
+    }
+    
+    
+/**
+ * This method will delete the file name if exist.
+ * @param folderpath
+ * @param fileName
+ * @return
+ */
+    public static boolean deleteFiles(String folderpath,String fileName)
+    {
+    	//Initializing the path with file name and creating the object.
+    	File file = new File(folderpath+"\\"+fileName);
+    	
+         try
+         {
+        	 if(file.delete())
+        		 return true;
+        	 else
+        		 return false;
+         }
+         catch(Exception Ex)
+         {
+        	 return false;
+         }
+    }
+    
+    
+/**
+ * This method will Search the File if exist. 
+ */
+    
+    public static boolean searchFiles(String folderpath,String fileName)
+    {
+    	//Initializing the path with file name and creating the object.
+    	File file = new File(folderpath+"\\"+fileName);
+    	
+         try
+         {
+        	 if(file.exist())
+        		 return true;
+        	 else
+        		 return false;
+         }
+         catch(Exception Ex)
+         {
+        	 return false;
+         }
+    }
+    
+    
+    
+    
+    
+    
+}

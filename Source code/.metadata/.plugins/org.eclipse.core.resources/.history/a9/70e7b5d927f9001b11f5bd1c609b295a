@@ -1,0 +1,38 @@
+package com.lockedme;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class LockedMeProject 
+{
+    static final String folderpath="D:\\Phase1 Project\\LockedMeFiles"; //FolderPath of files.  	
+	public static void main(String[] args)
+	{
+		//Variable Declaration.
+		Scanner obj = new Scanner(System.in);
+		String fileName;
+		int linesCount;
+		List<String> content = new ArrayList<String>();
+		
+		//Read files names from the user.
+		System.out.println("Enter the File Name:");
+		fileName=obj.nextLine();
+				
+       //Read number of Lines form the user.
+		System.out.println("Enter how many lines in the files:");
+		linesCount=Integer.parseInt(obj.nextLine());
+		
+	   //Read lines from the user.
+		for(int i=1;i<=linesCount;i++)
+		{
+			
+		}
+	
+		
+		
+		
+	}
+	
+}
+
